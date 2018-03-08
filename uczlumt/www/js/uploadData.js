@@ -4,8 +4,28 @@ function startDataUpload(){
 	var name = document.getElementById("name").value;
 	var surname = document.getElementById("surname").value;
 	var module = document.getElementById("module").value;
+	//get the checkbox values - separate them with a || so it would be split easily later on
+	var checkString = "";
+	var lis = document.getElementById("moduleList").getElementsByTagName("li");
+	for (var i = 0; i < lis.length; i++){
+		if (lis[i].getElementsByTagName("input")[0].checked){
+			checkString = checkString + lis[i].getElementsByTagName("input")[0].value + "||";
+		}
+	}
+	//get the select box value
+	var language = document.getElementById("languageselectbox").value;
+	var lat = document.getElementById("lat").value;
+	var lon = document.getElementById("lon").value;
 	
-	var postString = "name="+name +"&surname="+surname +"&module="+module;
+	 var postString = "name="+name +"&surname="+surname +"&module="+module + "&modulelist="+checkString +"&language="+language +"&latitude="+lat +"&longitude="+lon;
+	if(document.getElementById("morning").checked){
+		postString = postString + "&lecturetime=morning"
+	}
+	if(document.getElementById("afternoon").checked){
+		postString = postString + "&lecturetime=afternoon"
+	}
+	
+	//alert(postString);
 	processData(postString);
 }
 

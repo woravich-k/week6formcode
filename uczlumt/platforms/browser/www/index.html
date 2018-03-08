@@ -34,7 +34,7 @@
 		</ul>
 		
 		<p>Which modules are you taking?</p>
-		<ul>
+		<ul id="moduleList">
 			<li><label for = "cegeg077">CEGEG077 <label><input type ="checkbox" name = "modules" id = "cegeg077" value = "CEGEG077"></li>
 			<li><label for = "cegeg129">CEGEG129 <label><input type ="checkbox" name = "modules" id = "cegeg129" value = "CEGEG129"></li>
 			<li><label for = "cegeg082">CEGEG082 <label><input type ="checkbox" name = "modules" id = "cegeg082" value = "CEGEG082"></li>
@@ -50,9 +50,12 @@
 			<option>Spanish</option>
 			<option>Thai</option>
 			<option>Other</option>
-		</select>
-		
+		</select><br /><br />
+		<p>Location</p>
+		<label for = "lat">Latitude </label> <input type = "number" id = "lat" value ="51.524"/>
+		<label for = "lon">Longitude </label> <input type = "number" id = "lon" value = "-0.134"/>
 		<div>
+			<br />
 			<button id = "startUpload" onclick ="startDataUpload()">Start Data Upload</button><br />
 			<div id="dataUploadResult">The result of the upload goes here</div>
 		</div>
