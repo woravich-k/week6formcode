@@ -2,10 +2,12 @@
 <html>
 <head>
 	<title>Simple Form</title>
-	<script src="./js/uploadData.js"></script> 
-	<script>
 	
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.1.0/dist/leaflet.css" integrity ="sha512-wcw6ts8Anuw10Mzh9Ytw4pylW8+NAD4ch3lqm9lzAsTxg0GFeJgoAtxuCLREZSC5lUXdVyo/7yfsqFjQ4S+aKw==" crossorigin=""/>
+	
+	<script src="https://unpkg.com/leaflet@1.1.0/dist/leaflet.js" integrity = "sha512-mNqn2Wg7tSToJhvHcqfzLMU6J4mkOImSPTxVZAdo+lcPlk+GhZmYgACEe0x35K7YzW1zJ7XyJV/TT1MrdXvMcA=="	crossorigin="">
 	</script>
+	
 </head>
 <body>
 	<h1> This is simple form</h1>
@@ -52,13 +54,15 @@
 			<option>Other</option>
 		</select><br /><br />
 		<p>Location</p>
-		<label for = "lat">Latitude </label> <input type = "number" id = "lat" value ="51.524"/>
-		<label for = "lon">Longitude </label> <input type = "number" id = "lon" value = "-0.134"/>
+		<div id = "mapid" style="width: 100%;height: 400px;"></div>
+		<label for = "lat">Latitude </label> <input type = "number" id = "lat" value ="51.524" onchange = "movemarker()"/>
+		<label for = "lon">Longitude </label> <input type = "number" id = "lon" value = "-0.134" onchange = "movemarker()"/>
 		<div>
 			<br />
 			<button id = "startUpload" onclick ="startDataUpload()">Start Data Upload</button><br />
 			<div id="dataUploadResult">The result of the upload goes here</div>
 		</div>
 	</div>
+	<script src="./js/uploadData.js"></script> 
 </body>
 </html>

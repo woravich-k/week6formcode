@@ -1,4 +1,37 @@
 
+//							****** load simple map and define some icons ******
+//load the map
+var lat = document.getElementById("lat").value;
+var lon = document.getElementById("lon").value;
+var mymap = L.map('mapid').setView([lat,lon],13);
+	
+//load the tiles
+L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',{
+	maxZoom: 18,
+	attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,'+'<a href="http://creativecommons.org/licenses/by-sa/2.0/"> CC-BY-SA</a>,'+'imagery &copy; <a href="http://mapbox.com">Mapbox</a>', 
+	id: 'mapbox.streets'
+	}).addTo(mymap);
+
+
+var myMarker = L.marker([lat, lon], {title: "MyPoint", alt: "The Big I", draggable: true})
+	.addTo(mymap)
+	.on('dragend', function() {
+		var coord = myMarker.getLatLng();
+		lat = coord.lat
+		lon = coord.lng;
+		myMarker.bindPopup(lat + ", " + lon);
+		document.getElementById("lat").value = lat;
+		document.getElementById("lon").value = lon;	
+	});
+
+function movemarker(){
+	lat = document.getElementById("lat").value;
+	lon = document.getElementById("lon").value;
+	myMarker.setLatLng([lat, lon]);
+	myMarker.bindPopup(lat + ", " + lon);
+}
+	
+
 //function for upload data from the form
 function startDataUpload(){
 	var name = document.getElementById("name").value;
@@ -46,3 +79,5 @@ function dataUploaded(){
 		document.getElementById("dataUploadResult").innerHTML = client.responseText;
 	}
 }
+
+
