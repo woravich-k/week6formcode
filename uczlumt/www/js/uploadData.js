@@ -29,8 +29,16 @@ function movemarker(){
 	lon = document.getElementById("lon").value;
 	myMarker.setLatLng([lat, lon]);
 	myMarker.bindPopup(lat + ", " + lon);
+	mymap.fitBounds(myMarker.getLatLng().toBounds(3000));
 }
-	
+
+function locateMe(){
+	navigator.geolocation.getCurrentPosition(function(position){
+		document.getElementById("lat").value = position.coords.latitude;
+		document.getElementById("lon").value = position.coords.longitude;
+		movemarker();
+	});
+}
 
 //function for upload data from the form
 function startDataUpload(){
@@ -79,5 +87,6 @@ function dataUploaded(){
 		document.getElementById("dataUploadResult").innerHTML = client.responseText;
 	}
 }
+
 
 
